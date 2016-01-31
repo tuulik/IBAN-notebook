@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IBAN-notebook</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_new_iban">Add a new bank account</string>
+    <string name="add_name">Name</string>
+    <string name="add_iban">IBAN</string>
+    <string name="save_button">Save</string>
+    <string name="delete_button">X</string>
+</resources>
