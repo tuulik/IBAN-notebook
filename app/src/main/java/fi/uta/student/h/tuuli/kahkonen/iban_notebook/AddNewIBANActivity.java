@@ -34,16 +34,22 @@ public class AddNewIBANActivity extends AppCompatActivity {
         EditText etName = (EditText) findViewById(R.id.add_name);
         EditText etIBAN = (EditText) findViewById(R.id.add_iban);
 
+        // Using IBAN verification from the barend/java-iban library.
+        // Modulo97.verifyCheckDigits throws IllegalArgumentException if there are less than
+        // five chars in the argument string.
+        boolean ibanValid = false;
+        try {
+            ibanValid = Modulo97.verifyCheckDigits(etIBAN.getText().toString());
+        }
+        catch (IllegalArgumentException e) {
+            ibanValid = false;
+        }
+
         if(etName.getText().toString().length() == 0) {
             etName.setError("Name is required!");
         }
 
-        else if(etIBAN.getText().toString().length() == 0) {
-            etIBAN.setError("IBAN is required!");
-        }
-
-        // Using IBAN verification from the barend/java-iban library.
-        else if(!Modulo97.verifyCheckDigits(etIBAN.getText().toString())) {
+        else if(!ibanValid) {
             etIBAN.setError("Please give a valid IBAN!");
         }
 
